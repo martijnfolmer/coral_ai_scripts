@@ -7,4 +7,5 @@ from pycoral.utils.edgetpu import make_interpreter
 
 
 print("We succesfully imported new stuff")
+import cv2
 print("Hello World!")
