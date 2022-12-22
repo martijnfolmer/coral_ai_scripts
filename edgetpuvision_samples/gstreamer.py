@@ -47,7 +47,11 @@ from gi.repository import GstPbutils  # Must be called after Gst.init().
 
 from PIL import Image
 
-from .pipelines import *
+# from .pipelines import *
+
+import pipelines
+from gst import parse_format, Size, min_outer_size, max_inner_size, center_inside
+
 
 COMMAND_SAVE_FRAME = ' '
 COMMAND_PRINT_INFO = 'p'
