@@ -12,7 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .gst import *
+from gst import Source, Filter, Caps, Sink, Tee, Pad, Queue, max_inner_size
+
+# from .gst import *
 
 def decoded_file_src(filename):
     return [

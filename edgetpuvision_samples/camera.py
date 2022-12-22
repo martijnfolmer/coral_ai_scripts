@@ -15,10 +15,16 @@
 import os
 import threading
 
-from . import gstreamer
-from . import pipelines
+import gstreamer
+import pipelines
 
-from .gst import *
+import gst
+# from . import gstreamer
+# from . import pipelines
+
+# from .gst import *
+
+from gst import parse_format
 
 class Camera:
     def __init__(self, render_size, inference_size, loop):
