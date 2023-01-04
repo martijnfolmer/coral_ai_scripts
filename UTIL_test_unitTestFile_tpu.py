@@ -45,15 +45,15 @@ allhandGT = np.load(pathToOutputsNpy+"hand.npy")
 
 # initialize our interpreter
 pathToQuantizedEdgeTPUModel = 'test_FT_quantized_int8_uint8_edgetpu.tflite'
-print(f"Initializing the FingerTracking model with name"+ str(pathToQuantizedEdgeTPUModel))
+print("Initializing the FingerTracking model with name"+ str(pathToQuantizedEdgeTPUModel))
 interpreter = make_interpreter(pathToQuantizedEdgeTPUModel)
 interpreter.allocate_tensors()
-print(f"Initialized the FingerTracking model with name"+ str(pathToQuantizedEdgeTPUModel))
+print("Initialized the FingerTracking model with name"+ str(pathToQuantizedEdgeTPUModel))
 
 # get all images we wish to run through the image test
 print("Commencing the unit test")
 pathToImg = 'FT_unitTest'
-allImgPaths = [pathToImg + f"/{filePath}" for filePath in os.listdir(pathToImg) if '.png' in filePath or '.jpg' in filePath]
+allImgPaths = [pathToImg + "/" +filePath for filePath in os.listdir(pathToImg) if '.png' in filePath or '.jpg' in filePath]
 Outputs = runImgOnTPU(allImgPaths, interpreter)
 allCoor = [output[0] for output in Outputs]
 allvis = [output[1] for output in Outputs]
@@ -70,9 +70,9 @@ diffcoor = sum([sum(coor) for coor in diffcoor])
 diffhand = sum(mse_allhand)[0][0]
 
 print("\nResults unit test, these values should all be 0 : ")
-print(f"    Diff vis : "+str(diffvis))
-print(f"    Diff hand : "+str(diffhand))
-print(f"    Diff coor : "+str(diffcoor))
+print("    Diff vis : "+str(diffvis))
+print("    Diff hand : "+str(diffhand))
+print("    Diff coor : "+str(diffcoor))
 
 # Try a speed test
 random_input = np.random.rand(224, 224, 3)
@@ -91,8 +91,8 @@ for i in range(numSpeedtest):
 
     if (i+1) % 100 == 0:
         totTime = time.time()-t1
-        print(f"We are at "+str(i+1) + " our of "+str(numSpeedtest) + " : current avg speed per frame is "+str(round(100/totTime))+" Hz")
+        print("We are at "+str(i+1) + " our of "+str(numSpeedtest) + " : current avg speed per frame is "+str(round(100/totTime))+" Hz")
         t1 = time.time()
 
 tend = time.time()-tstart
-print(f"\nFinished with speed test.\n    Avg speed per frame is "+str(round(numSpeedtest/tend)) + " Hz")
+print("\nFinished with speed test.\n    Avg speed per frame is "+str(round(numSpeedtest/tend)) + " Hz")
