@@ -45,10 +45,10 @@ allhandGT = np.load(pathToOutputsNpy+"hand.npy")
 
 # initialize our interpreter
 pathToQuantizedEdgeTPUModel = 'test_FT_quantized_int8_uint8_edgetpu.tflite'
-print(f"Initializing the FingerTracking model with name '{pathToQuantizedEdgeTPUModel}'")
+print(f"Initializing the FingerTracking model with name {pathToQuantizedEdgeTPUModel}")
 interpreter = make_interpreter(pathToQuantizedEdgeTPUModel)
 interpreter.allocate_tensors()
-print(f"Initialized the FingerTracking model with name '{pathToQuantizedEdgeTPUModel}'")
+print(f"Initialized the FingerTracking model with name {pathToQuantizedEdgeTPUModel}")
 
 # get all images we wish to run through the image test
 print("Commencing the unit test")
